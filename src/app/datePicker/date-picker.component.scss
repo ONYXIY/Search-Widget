@@ -1,0 +1,20 @@
+.form-row {
+  display: flex;
+  justify-content: space-between;
+
+  .form-field-wrapper {
+    position: relative;
+    display: inline-block;
+
+    .form-field {
+      margin-right: 10px
+    }
+    .checkbox-wrapper {
+      position: absolute;
+      left: 0;
+      bottom: -20px;
+      width: 100%;
+    }
+
+  }
+}

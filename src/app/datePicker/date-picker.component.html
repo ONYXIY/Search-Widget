@@ -1,0 +1,23 @@
+<div class="form-row">
+  <div class="form-field-wrapper">
+    <div class="form-field">
+      <mat-form-field color="accent">
+        <mat-label>Когда</mat-label>
+        <input matInput [matDatepicker]="picker1" [min]="minDate" (dateChange)="updateMinReturnDate($event)">
+        
+        <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="checkbox-wrapper">
+      <mat-checkbox class="checkbox-under-hint" [(ngModel)]="needReturnData">Без обратной даты</mat-checkbox>
+    </div>
+  </div>
+  <mat-form-field color="accent">
+    <mat-label>Обратно</mat-label>
+    <input matInput [matDatepicker]="picker2" [min]="minReturnDate" [disabled]="needReturnData">
+    
+    <mat-datepicker-toggle matIconSuffix [for]="picker2" [disabled]="needReturnData"></mat-datepicker-toggle>
+    <mat-datepicker #picker2 color="primary"></mat-datepicker>
+  </mat-form-field>
+</div>

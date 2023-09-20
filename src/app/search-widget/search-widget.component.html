@@ -1,0 +1,32 @@
+<div class="wrapper">
+    <div class="container">
+        <mat-form-field appearance="fill">
+            <mat-label>Откуда</mat-label>
+            <input matInput id="fromCity" [matAutocomplete]="fromAuto" (optionSelected)="updateSelectedFromCity($event)"
+                [formControl]="fromCityCtrl">
+            <mat-autocomplete #fromAuto="matAutocomplete">
+                <mat-option *ngFor="let city of filteredCitiesFrom | async" [value]="city">
+                    {{ city }}
+                </mat-option>
+            </mat-autocomplete>
+            <mat-error *ngIf="fromCityCtrl.hasError('required') && fromCityCtrl.touched">Выберите город</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Куда</mat-label>
+            <input matInput id="toCity" [matAutocomplete]="toAuto" (optionSelected)="updateSelectedToCity($event)"
+                [formControl]="toCityCtrl">
+            <mat-autocomplete #toAuto="matAutocomplete">
+                <mat-option *ngFor="let city of filteredCitiesTo | async" [value]="city">
+                    {{ city }}
+                </mat-option>
+            </mat-autocomplete>
+            <mat-error *ngIf="toCityCtrl.hasError('required') && toCityCtrl.touched">Выберите город</mat-error>
+        </mat-form-field>
+
+        <div><app-date-picker></app-date-picker></div>
+
+        <div>
+            <button mat-raised-button (click)="onSubmit()">Найти</button>
+        </div>
+    </div>
+</div>
