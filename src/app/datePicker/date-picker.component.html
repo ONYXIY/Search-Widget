@@ -3,10 +3,15 @@
     <div class="form-field">
       <mat-form-field color="accent">
         <mat-label>Когда</mat-label>
-        <input matInput [matDatepicker]="picker1" [min]="minDate" (dateChange)="updateMinReturnDate($event)">
-        
+        <input matInput 
+               [matDatepicker]="picker1" 
+               [min]="minDate" 
+               [formControl]="dateControl"
+               (dateChange)="updateMinReturnDate($event)"
+               (focus)="picker1.open()">
         <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
         <mat-datepicker #picker1></mat-datepicker>
+        <mat-error *ngIf="dateControl.hasError('invalidDate')">Некорректная дата</mat-error>
       </mat-form-field>
     </div>
     <div class="checkbox-wrapper">
@@ -15,9 +20,14 @@
   </div>
   <mat-form-field color="accent">
     <mat-label>Обратно</mat-label>
-    <input matInput [matDatepicker]="picker2" [min]="minReturnDate" [disabled]="needReturnData">
-    
+    <input matInput 
+           [matDatepicker]="picker2" 
+           [min]="minReturnDate" 
+           [disabled]="needReturnData"
+           [formControl]="returnDateControl"
+           (focus)="picker2.open()">
     <mat-datepicker-toggle matIconSuffix [for]="picker2" [disabled]="needReturnData"></mat-datepicker-toggle>
     <mat-datepicker #picker2 color="primary"></mat-datepicker>
+    <mat-error *ngIf="returnDateControl.hasError('invalidDate')">Некорректная дата</mat-error>
   </mat-form-field>
 </div>
